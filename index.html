@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Alguien Especial</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+        }
+        h1 {
+            color: #ff6b6b;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        .heart {
+            font-size: 60px;
+            color: #ff6b6b;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .music-btn {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+        .music-btn:hover {
+            background-color: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(255, 107, 107, 0.6);
+        }
+        .music-btn:active {
+            transform: translateY(1px);
+        }
+        .message-area {
+            margin-top: 30px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            transition: all 0.5s ease;
+        }
+        .flowers {
+            margin: 20px 0;
+            font-size: 24px;
+        }
+        footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #666;
+        }
+        .hidden {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        .fadeIn {
+            animation: fadeIn 2s;
+        }
+        .youtube-container {
+            margin-top: 20px;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+        .youtube-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Para Alguien Muy Especial</h1>
+        <div class="heart">❤️</div>
+        <p>Esto esta dedicado para ati la teletubi que tanto quiero.</p>
+        
+        <button id="playButton" class="music-btn">
+            ♫ Esta Canción es para ti ♫
+        </button>
+        
+        <div id="youtubeContainer" class="youtube-container">
+            <!-- El iframe de YouTube se insertará aquí mediante JavaScript -->
+        </div>
+        
+        <div id="messageArea" class="message-area hidden">
+            <p>Quería dedicarte esta canción porque expresa lo que siento por ti...</p>
+            <p><em>"Te quiero mucho"</em></p>
+            <div class="flowers">🌹✨🌹</div>
+            <p>Cada día agradezco tenerte en mi vida.</p>
+        </div>
+        
+        <footer>
+            Hecho con amor para ti ❤️
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const playButton = document.getElementById('playButton');
+            const youtubeContainer = document.getElementById('youtubeContainer');
+            const messageArea = document.getElementById('messageArea');
+            let isVisible = false;
+
+            // ID del video de YouTube de "La Perfecta" de Danny Lux
+            // Este es un ID de ejemplo - deberás reemplazarlo con el ID correcto
+            const youtubeVideoId = "Ooiu16Z0-dY"; // Reemplaza con el ID correcto
+            
+            playButton.addEventListener('click', function() {
+                if (!isVisible) {
+                    // Mostrar el reproductor de YouTube y el mensaje
+                    youtubeContainer.style.display = 'block';
+                    youtubeContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                    
+                    messageArea.classList.remove('hidden');
+                    messageArea.classList.add('visible', 'fadeIn');
+                    
+                    playButton.textContent = "◼ Oculta la Canción";
+                } else {
+                    // Ocultar el reproductor y el mensaje
+                    youtubeContainer.style.display = 'none';
+                    youtubeContainer.innerHTML = '';
+                    
+                    messageArea.classList.remove('visible');
+                    messageArea.classList.add('hidden');
+                    
+                    playButton.textContent = "♫ Toca Para Escuchar Nuestra Canción ♫";
+                }
+                isVisible = !isVisible;
+            });
+        });
+    </script>
+</body>
+</html>
